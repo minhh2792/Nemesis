@@ -1,0 +1,36 @@
+package dev.minhh2792.nemesis.commands.subcommands;
+
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import dev.minhh2792.nemesis.Utils;
+import dev.minhh2792.nemesis.commands.SubCommand;
+
+public class DeOP implements SubCommand {
+    
+    @Override
+    public void execute(CommandSender sender, String[] args) {
+        if (args.length == 1) {
+            sender.sendMessage(Utils.colorize("&cUsage: /papermc deop <player>"));
+            return;
+        }
+
+        Player player = Utils.getPlayerExact(args[1]);
+        if (player == null) {
+            sender.sendMessage(Utils.colorize("&cPlayer not found!"));
+            return;
+        }
+
+        if (player.isOp()) {
+            player.setOp(false);
+            sender.sendMessage(Utils.colorize("&aYou have successfully deopped " + player.getName()));
+        } else {
+            sender.sendMessage(Utils.colorize("&cThat player is not opped!"));
+        }
+    }
+
+    @Override
+    public String getName() {
+        return "DeOP";
+    }
+}

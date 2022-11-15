@@ -1,0 +1,6 @@
+name: ItemMergeFix
+version: ${project.version}
+api-version: 1.13
+author: minhh2792
+description: Fix merging item
+main: dev.minhh2792.nemesis.Nemesis
