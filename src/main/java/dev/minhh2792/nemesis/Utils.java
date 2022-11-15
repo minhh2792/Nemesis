@@ -23,7 +23,7 @@ public class Utils {
 
     public static List<String> colorize(List<String> message) {
         ArrayList<String> newList = new ArrayList<String>();
-        message.forEach(msg -> newList.add(colorize("&8[&6!&8] " + msg)));
+        message.forEach(msg -> newList.add(colorize(msg)));
 
         return newList;
     }
