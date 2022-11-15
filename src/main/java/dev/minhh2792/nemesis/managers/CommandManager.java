@@ -48,11 +48,6 @@ public class CommandManager implements TabExecutor {
             return true;
         }
 
-        if (!sender.isOp()) {
-            sender.sendMessage(Utils.colorize("&cYou do not have permission to execute this command!"));
-            return true;
-        }
-
         subCommand.execute(sender, args);
         return true;
     }
