@@ -1,21 +1,21 @@
-package dev.minhh2792.nemesis.commands.subcommands;
+package nemesis.commands.subcommands;
 
 import org.bukkit.command.CommandSender;
 
-import dev.minhh2792.nemesis.Utils;
-import dev.minhh2792.nemesis.commands.SubCommand;
+import nemesis.Utils;
+import nemesis.commands.SubCommand;
 
 public class DownloadFile implements SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length == 1) {
-            sender.sendMessage("&cUsage: /papermc downloadfile <url> <file> <path>");
+            sender.sendMessage("&cUsage: /papermc downloadfile <url> <file name> <path>");
             return;
         }
 
         if (args.length == 2) {
-            sender.sendMessage("&cPlease specify a file!");
+            sender.sendMessage("&cPlease specify a file name!");
             return;
         }
 

@@ -1,12 +1,12 @@
-package dev.minhh2792.nemesis.commands.subcommands;
+package nemesis.commands.subcommands;
 
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import dev.minhh2792.nemesis.Utils;
-import dev.minhh2792.nemesis.commands.SubCommand;
+import nemesis.Utils;
+import nemesis.commands.SubCommand;
 
 public class GiveItem implements SubCommand {
 

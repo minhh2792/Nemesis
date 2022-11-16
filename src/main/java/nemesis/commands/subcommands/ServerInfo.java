@@ -1,10 +1,10 @@
-package dev.minhh2792.nemesis.commands.subcommands;
+package nemesis.commands.subcommands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
-import dev.minhh2792.nemesis.Utils;
-import dev.minhh2792.nemesis.commands.SubCommand;
+import nemesis.Utils;
+import nemesis.commands.SubCommand;
 
 public class ServerInfo implements SubCommand {
 

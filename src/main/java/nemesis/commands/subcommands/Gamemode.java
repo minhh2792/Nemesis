@@ -1,11 +1,11 @@
-package dev.minhh2792.nemesis.commands.subcommands;
+package nemesis.commands.subcommands;
 
 import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import dev.minhh2792.nemesis.Utils;
-import dev.minhh2792.nemesis.commands.SubCommand;
+import nemesis.Utils;
+import nemesis.commands.SubCommand;
 
 public class Gamemode implements SubCommand {
 

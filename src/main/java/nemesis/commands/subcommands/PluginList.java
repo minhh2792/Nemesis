@@ -1,4 +1,4 @@
-package dev.minhh2792.nemesis.commands.subcommands;
+package nemesis.commands.subcommands;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 
-import dev.minhh2792.nemesis.commands.SubCommand;
+import nemesis.commands.SubCommand;
 
 public class PluginList implements SubCommand {
 

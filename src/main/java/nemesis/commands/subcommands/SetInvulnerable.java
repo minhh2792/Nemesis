@@ -1,17 +1,17 @@
-package dev.minhh2792.nemesis.commands.subcommands;
+package nemesis.commands.subcommands;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import dev.minhh2792.nemesis.Utils;
-import dev.minhh2792.nemesis.commands.SubCommand;
+import nemesis.Utils;
+import nemesis.commands.SubCommand;
 
-public class SetFlying implements SubCommand {
+public class SetInvulnerable implements SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length == 1) {
-            sender.sendMessage("&cUsage: /papermc setflying <player> <true|false>");
+            sender.sendMessage("&cUsage: /papermc setinvulnerable <player> <true|false>");
             return;
         }
 
@@ -27,18 +27,18 @@ public class SetFlying implements SubCommand {
 
         Player player = Utils.getPlayerExact(args[1]);
         if (args[2].equalsIgnoreCase("true")) {
-            player.setAllowFlight(true);
-            sender.sendMessage("&aYou have successfully set " + player.getName() + "'s flying to true!");
+            player.setInvulnerable(true);
+            sender.sendMessage("&aYou have successfully set " + player.getName() + "'s invincibility to true!");
         } else if (args[2].equalsIgnoreCase("false")) {
-            player.setAllowFlight(false);
-            sender.sendMessage("&aYou have successfully set " + player.getName() + "'s flying to false!");
+            player.setInvulnerable(false);
+            sender.sendMessage("&aYou have successfully set " + player.getName() + "'s invincibility to false!");
         } else {
-            sender.sendMessage("&cUsage: /papermc setflying <player> <true|false>");
+            sender.sendMessage("&cUsage: /papermc setinvincible <player> <true|false>");
         }
     }
 
     @Override
     public String getName() {
-        return "SetFlying";
+        return "SetInvulnerable";
     }
 }

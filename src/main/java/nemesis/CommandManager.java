@@ -1,4 +1,4 @@
-package dev.minhh2792.nemesis.managers;
+package nemesis;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -10,9 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.TabExecutor;
 
-import dev.minhh2792.nemesis.Nemesis;
-import dev.minhh2792.nemesis.Utils;
-import dev.minhh2792.nemesis.commands.SubCommand;
+import nemesis.commands.SubCommand;
 
 public class CommandManager implements TabExecutor {
     private final Nemesis main;

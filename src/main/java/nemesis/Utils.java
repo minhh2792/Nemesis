@@ -1,4 +1,4 @@
-package dev.minhh2792.nemesis;
+package nemesis;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
@@ -62,7 +62,7 @@ public class Utils {
                 sender.sendMessage(colorize("&aDownloaded " + fileName + " from " + url + " to " + path));
             } catch (Exception e) {
                 sender.sendMessage(colorize("&cError downloading file!"));
-                e.printStackTrace();
+                sender.sendMessage(colorize("&c" + e.getMessage()));
             }
         });
     }

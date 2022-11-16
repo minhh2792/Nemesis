@@ -1,4 +1,4 @@
-package dev.minhh2792.nemesis.commands;
+package nemesis.commands;
 
 import org.bukkit.command.CommandSender;
 

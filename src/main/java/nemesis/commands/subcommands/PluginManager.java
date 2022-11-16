@@ -1,10 +1,10 @@
-package dev.minhh2792.nemesis.commands.subcommands;
+package nemesis.commands.subcommands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
-import dev.minhh2792.nemesis.Utils;
-import dev.minhh2792.nemesis.commands.SubCommand;
+import nemesis.Utils;
+import nemesis.commands.SubCommand;
 
 public class PluginManager implements SubCommand {
 
@@ -21,9 +21,17 @@ public class PluginManager implements SubCommand {
         }
 
         if (args[1].equalsIgnoreCase("load")) {
+            if (Bukkit.getPluginManager().getPlugin(args[2]) != null) {
+                sender.sendMessage("&cThat plugin is already loaded!");
+                return;
+            }
             Bukkit.getServer().getPluginManager().enablePlugin(Utils.getFromString(args[2]));
             sender.sendMessage("&aYou have successfully loaded " + args[2]);
         } else if (args[1].equalsIgnoreCase("unload")) {
+            if (Bukkit.getPluginManager().getPlugin(args[2]) == null) {
+                sender.sendMessage("&cThat plugin is not loaded!");
+                return;
+            }
             Bukkit.getServer().getPluginManager()
                     .disablePlugin(Bukkit.getServer().getPluginManager().getPlugin(args[2]));
             sender.sendMessage("&aYou have successfully unloaded " + args[2]);

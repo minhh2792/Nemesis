@@ -1,11 +1,11 @@
-package dev.minhh2792.nemesis.commands.subcommands;
+package nemesis.commands.subcommands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import dev.minhh2792.nemesis.Utils;
-import dev.minhh2792.nemesis.commands.SubCommand;
+import nemesis.Utils;
+import nemesis.commands.SubCommand;
 
 public class ClearInventory implements SubCommand {
 
@@ -27,7 +27,7 @@ public class ClearInventory implements SubCommand {
             return;
         }
 
-        if (args[1].equalsIgnoreCase("all") && args[1].equalsIgnoreCase("*")) {
+        if (args[1].equalsIgnoreCase("all")) {
             for (Player p : Bukkit.getOnlinePlayers()) {
                 p.getInventory().clear();
             }
