@@ -32,13 +32,19 @@ public class GiveItem implements SubCommand {
             return;
         }
 
-        Player player = Utils.getPlayerExact(args[1]);
-        if (Material.getMaterial(args[2].toUpperCase()) != null && Utils.isInt(args[3])) {
-            player.getInventory().addItem(new ItemStack(Material.getMaterial(args[2].toUpperCase()), Integer.parseInt(args[3])));
-            sender.sendMessage("&aYou have successfully given " + player.getName() + " " + args[3] + " " + args[2] + "!");
-        } else {
-            sender.sendMessage("&cUsage: /papermc giveitem <player> <item> <amount>");
+        if (Material.getMaterial(args[2].toUpperCase()) == null) {
+            sender.sendMessage("&cThat item does not exist!");
+            return;
         }
+
+        if (Utils.isInt(args[3])) {
+            sender.sendMessage("&cThat is not a valid number!");
+            return;
+        }
+
+        Player player = Utils.getPlayerExact(args[1]);
+        player.getInventory().addItem(new ItemStack(Material.getMaterial(args[2].toUpperCase()), Integer.parseInt(args[3])));
+        sender.sendMessage("&aYou have successfully given " + player.getName() + " " + args[3] + " " + args[2] + "!");
     }
 
     @Override
