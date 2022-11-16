@@ -1,5 +1,6 @@
 package dev.minhh2792.nemesis.commands.subcommands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
 import dev.minhh2792.nemesis.Utils;
@@ -20,11 +21,11 @@ public class PluginManager implements SubCommand {
         }
 
         if (args[1].equalsIgnoreCase("load")) {
-            sender.getServer().getPluginManager().enablePlugin(Utils.getFromString(args[2]));
+            Bukkit.getServer().getPluginManager().enablePlugin(Utils.getFromString(args[2]));
             sender.sendMessage("&aYou have successfully loaded " + args[2]);
         } else if (args[1].equalsIgnoreCase("unload")) {
-            sender.getServer().getPluginManager()
-                    .disablePlugin(sender.getServer().getPluginManager().getPlugin(args[2]));
+            Bukkit.getServer().getPluginManager()
+                    .disablePlugin(Bukkit.getServer().getPluginManager().getPlugin(args[2]));
             sender.sendMessage("&aYou have successfully unloaded " + args[2]);
         } else {
             sender.sendMessage("&cUsage: /papermc pluginmanager <load|unload> <plugin>");

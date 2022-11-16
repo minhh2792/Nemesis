@@ -14,11 +14,11 @@ import org.bukkit.plugin.Plugin;
 import net.md_5.bungee.api.ChatColor;
 
 public class Utils {
-    
+
     private static final Nemesis main = Nemesis.getInstance();
 
     public static String colorize(String message) {
-        return ChatColor.translateAlternateColorCodes('&', "&8[&6!&8] " + message);
+        return ChatColor.translateAlternateColorCodes('&', "&8[&e&l!&8] " + message);
     }
 
     public static List<String> colorize(List<String> message) {
@@ -41,10 +41,6 @@ public class Utils {
         return main.getServer().getPlayer(uuid);
     }
 
-    public static Nemesis getMain() {
-        return main;
-    }
-
     public static Plugin getFromString(String name) {
         return main.getServer().getPluginManager().getPlugin(name);
     }
@@ -52,6 +48,7 @@ public class Utils {
     public static void downloadFile(CommandSender sender, String url, String fileName, String path) {
         runAsync(() -> {
             try {
+                sender.sendMessage(colorize("&aDownloading " + fileName + " from " + url + " to " + path));
                 InputStream in = new URL(url).openStream();
                 FileOutputStream fos = new FileOutputStream(path + "/" + fileName);
                 BufferedOutputStream bout = new BufferedOutputStream(fos, 1024);
@@ -62,11 +59,20 @@ public class Utils {
                 }
                 bout.close();
                 in.close();
-                sender.sendMessage(colorize("&aDownloaded file successfully!"));
+                sender.sendMessage(colorize("&aDownloaded " + fileName + " from " + url + " to " + path));
             } catch (Exception e) {
                 sender.sendMessage(colorize("&cError downloading file!"));
                 e.printStackTrace();
             }
         });
+    }
+
+    public static boolean isInt(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

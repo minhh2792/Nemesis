@@ -38,7 +38,7 @@ public class CommandManager implements TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage(Utils.colorize("&cThis command does not exist!"));
+            sender.sendMessage(Utils.colorize("&b&lItemMergeFix &7- &eCurrently running in the background!"));
             return true;
         }
 

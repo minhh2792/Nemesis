@@ -3,6 +3,7 @@ package dev.minhh2792.nemesis.commands.subcommands;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -18,7 +19,7 @@ public class PlayerList implements SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        for (Player player : sender.getServer().getOnlinePlayers()) {
+        for (Player player : Bukkit.getServer().getOnlinePlayers()) {
             players.put(player, player.getName());
         }
 
