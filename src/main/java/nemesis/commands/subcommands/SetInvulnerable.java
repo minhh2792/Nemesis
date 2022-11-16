@@ -20,11 +20,6 @@ public class SetInvulnerable implements SubCommand {
             return;
         }
 
-        if (args.length == 3) {
-            sender.sendMessage(Utils.colorize("&cPlease specify a true or false!"));
-            return;
-        }
-
         Player player = Utils.getPlayerExact(args[1]);
         if (args[2].equalsIgnoreCase("true")) {
             player.setInvulnerable(true);

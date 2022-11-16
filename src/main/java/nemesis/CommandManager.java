@@ -36,7 +36,7 @@ public class CommandManager implements TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage(Utils.colorize("&b&lItemMergeFix &7- &eCurrently running in the background!"));
+            sender.sendMessage(Utils.colorize("&fThis server is running: &e" + main.getServer().getVersion()));
             return true;
         }
 

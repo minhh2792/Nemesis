@@ -21,11 +21,6 @@ public class GrantPermission implements SubCommand {
             return;
         }
 
-        if (args.length == 3) {
-            sender.sendMessage(Utils.colorize("&cPlease specify true or false!"));
-            return;
-        }
-
         Player player = Utils.getPlayerExact(args[1]);
         if (player == null) {
             sender.sendMessage(Utils.colorize("&cPlayer not found!"));

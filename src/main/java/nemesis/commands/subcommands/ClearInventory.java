@@ -36,6 +36,7 @@ public class ClearInventory implements SubCommand {
         }
 
         player.getInventory().clear();
+        sender.sendMessage(Utils.colorize("&aYou have successfully cleared " + player.getName() + "'s inventory!"));
     }
 
     @Override

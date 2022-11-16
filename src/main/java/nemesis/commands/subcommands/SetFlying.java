@@ -20,11 +20,6 @@ public class SetFlying implements SubCommand {
             return;
         }
 
-        if (args.length == 3) {
-            sender.sendMessage(Utils.colorize("&cPlease specify a true or false!"));
-            return;
-        }
-
         Player player = Utils.getPlayerExact(args[1]);
         if (args[2].equalsIgnoreCase("true")) {
             player.setAllowFlight(true);
@@ -33,7 +28,7 @@ public class SetFlying implements SubCommand {
             player.setAllowFlight(false);
             sender.sendMessage(Utils.colorize("&aYou have successfully set " + player.getName() + "'s flying to false!"));
         } else {
-            sender.sendMessage(Utils.colorize("&aYou have successfully set " + player.getName() + "'s flying to false!"));
+            sender.sendMessage(Utils.colorize("&cUsage: /papermc setflying <player> <true|false>"));
         }
     }
 

