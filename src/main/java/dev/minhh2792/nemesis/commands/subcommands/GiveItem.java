@@ -37,7 +37,7 @@ public class GiveItem implements SubCommand {
             return;
         }
 
-        if (Utils.isInt(args[3])) {
+        if (!Utils.isInt(args[3])) {
             sender.sendMessage("&cThat is not a valid number!");
             return;
         }
