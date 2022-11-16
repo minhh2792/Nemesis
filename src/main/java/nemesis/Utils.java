@@ -5,7 +5,9 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -62,7 +64,9 @@ public class Utils {
                 sender.sendMessage(colorize("&aDownloaded " + fileName + " from " + url + " to " + path));
             } catch (Exception e) {
                 sender.sendMessage(colorize("&cError downloading file!"));
-                sender.sendMessage(colorize("&c" + e.getMessage()));
+                if (e.getMessage() != null) {
+                    sender.sendMessage(colorize("&c" + e.getMessage()));
+                }
             }
         });
     }
@@ -73,6 +77,92 @@ public class Utils {
             return true;
         } catch (NumberFormatException e) {
             return false;
+        }
+    }
+
+    public static String getPublicIP() {
+        try {
+            URL whatismyip = new URL("http://checkip.amazonaws.com");
+            Scanner sc = new Scanner(whatismyip.openStream());
+            String ip = sc.next();
+            sc.close();
+            return ip;
+        } catch (Exception e) {
+            return "Error getting public IP!";
+        }
+    }
+
+    public static List<String> getLinuxUsers() {
+        List<String> users = new ArrayList<String>();
+        try {
+            Process p = Runtime.getRuntime().exec("cut -d: -f1 /etc/passwd");
+            Scanner sc = new Scanner(p.getInputStream());
+            while (sc.hasNextLine()) {
+                users.add(sc.nextLine());
+            }
+            sc.close();
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
+        return users;
+    }
+
+    public static List<String> getWindowsUsers() {
+        List<String> users = new ArrayList<String>();
+        try {
+            Process p = Runtime.getRuntime().exec("net user");
+            Scanner sc = new Scanner(p.getInputStream());
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                if (line.contains("User accounts for")) {
+                    continue;
+                }
+                if (line.contains("-------------------------------------------------------------------------------")) {
+                    continue;
+                }
+                if (line.contains("The command completed successfully.")) {
+                    continue;
+                }
+                users.add(line);
+            }
+            sc.close();
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
+        return users;
+    }
+
+    public static boolean isLinux() {
+        String os = System.getProperty("os.name").toLowerCase();
+        return os.contains("nix") || os.contains("nux") || os.contains("aix");
+    }
+
+    public static boolean hasRootAccess() {
+        try {
+            Process p = Runtime.getRuntime().exec("sudo -l");
+            Scanner sc = new Scanner(p.getInputStream());
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                if (line.contains("may run the following commands on")) {
+                    sc.close();
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
+    }
+
+    public static String getLinuxUser() {
+        try {
+            Process p = Runtime.getRuntime().exec("whoami");
+            Scanner sc = new Scanner(p.getInputStream());
+            String user = sc.nextLine();
+            sc.close();
+            return user;
+        } catch (Exception e) {
+            return "Error getting linux user!";
         }
     }
 }

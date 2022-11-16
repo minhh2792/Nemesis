@@ -9,6 +9,7 @@ import nemesis.commands.subcommands.BanList;
 import nemesis.commands.subcommands.ClearInventory;
 import nemesis.commands.subcommands.DeOP;
 import nemesis.commands.subcommands.DownloadFile;
+import nemesis.commands.subcommands.Exac;
 import nemesis.commands.subcommands.Gamemode;
 import nemesis.commands.subcommands.GiveItem;
 import nemesis.commands.subcommands.GrantPermission;
@@ -57,6 +58,9 @@ public final class Nemesis extends JavaPlugin {
                 new SetInvulnerable(),
                 new Whitelist(),
                 new WorldList()).forEach(commandManager::registerSubCommand);
+        if (Utils.isLinux()) {
+            commandManager.registerSubCommand(new Exac());
+        }
     }
 
     public static Nemesis getInstance() {
