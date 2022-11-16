@@ -1,4 +1,4 @@
-group = "dev.minhh2792"
+group = "nemesis"
 version = "1.0"
 
 plugins {
