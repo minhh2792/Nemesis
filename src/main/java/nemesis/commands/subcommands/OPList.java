@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 
+import nemesis.Utils;
 import nemesis.commands.SubCommand;
 
 public class OPList implements SubCommand {
@@ -23,11 +24,11 @@ public class OPList implements SubCommand {
             ops.put(op, op.getName());
         }
 
-        sender.sendMessage("&aOPs (" + ops.size() + "): &f" + ops.values().toString().replace("[", "").replace("]", ""));
+        sender.sendMessage(Utils.colorize("&aOPs (" + ops.size() + "): &f" + ops.values().toString().replace("[", "").replace("]", "")));
     }
 
     @Override
     public String getName() {
-        return "OPList";
+        return "oplist";
     }  
 }

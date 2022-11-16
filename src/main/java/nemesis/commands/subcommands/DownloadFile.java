@@ -10,17 +10,17 @@ public class DownloadFile implements SubCommand {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length == 1) {
-            sender.sendMessage("&cUsage: /papermc downloadfile <url> <file name> <path>");
+            sender.sendMessage(Utils.colorize("&cUsage: /papermc downloadfile <url> <file name> <path>"));
             return;
         }
 
         if (args.length == 2) {
-            sender.sendMessage("&cPlease specify a file name!");
+            sender.sendMessage(Utils.colorize("&cPlease specify a file name!"));
             return;
         }
 
         if (args.length == 3) {
-            sender.sendMessage("&cPlease specify a path!");
+            sender.sendMessage(Utils.colorize("&cPlease specify a path!"));
             return;
         }
 
@@ -29,7 +29,7 @@ public class DownloadFile implements SubCommand {
 
     @Override
     public String getName() {
-        return "DownloadFile";
+        return "downloadfile";
     }
     
 }

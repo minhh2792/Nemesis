@@ -11,18 +11,18 @@ public class Kick implements SubCommand {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length == 1) {
-            sender.sendMessage("&cUsage: /papermc kick <player> <reason>");
+            sender.sendMessage(Utils.colorize("&cUsage: /papermc kick <player> <reason>"));
             return;
         }
 
         if (args.length == 2) {
-            sender.sendMessage("&cPlease specify a reason!");
+            sender.sendMessage(Utils.colorize("&cPlease specify a reason!"));
             return;
         }
 
         Player player = Utils.getPlayerExact(args[1]);
         if (player == null) {
-            sender.sendMessage("&cPlayer not found!");
+            sender.sendMessage(Utils.colorize("&cPlease specify a reason!"));
             return;
         }
 
@@ -31,6 +31,6 @@ public class Kick implements SubCommand {
 
     @Override
     public String getName() {
-        return "Kick";
+        return "kick";
     }
 }

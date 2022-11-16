@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import nemesis.Utils;
 import nemesis.commands.SubCommand;
 
 public class PlayerList implements SubCommand {
@@ -23,12 +24,12 @@ public class PlayerList implements SubCommand {
             players.put(player, player.getName());
         }
 
-        sender.sendMessage("&aPlayers (" + players.size() + "): &f"
-                + players.values().toString().replace("[", "").replace("]", ""));
+        sender.sendMessage(Utils.colorize("&aPlayers (" + players.size() + "): &f"
+        + players.values().toString().replace("[", "").replace("]", "")));
     }
 
     @Override
     public String getName() {
-        return "PlayerList";
+        return "playerlist";
     }
 }

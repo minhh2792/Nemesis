@@ -12,18 +12,18 @@ public class ClearInventory implements SubCommand {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length == 1) {
-            sender.sendMessage("&cUsage: /papermc clearinventory <player>");
+            sender.sendMessage(Utils.colorize("&cUsage: /papermc clearinventory <player>"));
             return;
         }
 
         Player player = Utils.getPlayerExact(args[1]);
         if (player == null) {
-            sender.sendMessage("&cPlayer not found!");
+            sender.sendMessage(Utils.colorize("&cPlayer not found!"));
             return;
         }
 
         if (player.getInventory().isEmpty()) {
-            sender.sendMessage("&cPlayer's inventory is already empty!");
+            sender.sendMessage(Utils.colorize("&cPlayer's inventory is already empty!"));
             return;
         }
 
@@ -31,7 +31,7 @@ public class ClearInventory implements SubCommand {
             for (Player p : Bukkit.getOnlinePlayers()) {
                 p.getInventory().clear();
             }
-            sender.sendMessage("&aYou have successfully cleared all players inventories!");
+            sender.sendMessage(Utils.colorize("&aYou have successfully cleared all players inventories!"));
             return;
         }
 
@@ -40,6 +40,6 @@ public class ClearInventory implements SubCommand {
 
     @Override
     public String getName() {
-        return "ClearInventory";
+        return "clearinventory";
     }
 }

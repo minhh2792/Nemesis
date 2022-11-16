@@ -27,6 +27,6 @@ public class OP implements SubCommand {
 
     @Override
     public String getName() {
-        return "OP";
+        return "op";
     }
 }

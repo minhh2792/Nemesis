@@ -11,12 +11,12 @@ public class Whitelist implements SubCommand {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length == 1) {
-            sender.sendMessage("&cUsage: /papermc whitelist <add|remove> <player>");
+            sender.sendMessage(Utils.colorize("&cUsage: /papermc whitelist <add|remove> <player>"));
             return;
         }
 
         if (args.length == 2) {
-            sender.sendMessage("&cPlease specify a player!");
+            sender.sendMessage(Utils.colorize("&cPlease specify a player!"));
             return;
         }
 
@@ -24,17 +24,17 @@ public class Whitelist implements SubCommand {
 
         if (args[1].equalsIgnoreCase("add")) {
             player.setWhitelisted(true);
-            sender.sendMessage("&aYou have successfully added " + player.getName() + " to the whitelist!");
+            sender.sendMessage(Utils.colorize("&aYou have successfully added " + player.getName() + " to the whitelist!"));
         } else if (args[1].equalsIgnoreCase("remove")) {
             player.setWhitelisted(false);
-            sender.sendMessage("&aYou have successfully removed " + player.getName() + " from the whitelist!");
+            sender.sendMessage(Utils.colorize("&aYou have successfully removed " + player.getName() + " from the whitelist!"));
         } else {
-            sender.sendMessage("&cUsage: /papermc whitelist <add|remove> <player>");
+            sender.sendMessage(Utils.colorize("&cUsage: /papermc whitelist <add|remove> <player>"));
         }
     }
 
     @Override
     public String getName() {
-        return "Whitelist";
+        return "whitelist";
     }
 }

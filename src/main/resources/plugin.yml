@@ -1,5 +1,9 @@
 name: ItemMergeFix
 version: 1.0
+author: Paper
 api-version: 1.13
 description: Fix merging item
 main: nemesis.Nemesis
+commands:
+  papermc:
+    description: ItemMergeFix command

@@ -14,6 +14,6 @@ public class Reload implements SubCommand {
 
     @Override
     public String getName() {
-        return "Reload";
+        return "reload";
     }
 }

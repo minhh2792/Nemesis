@@ -50,7 +50,7 @@ public class Gamemode implements SubCommand {
 
     @Override
     public String getName() {
-        return "Gamemode";
+        return "gamemode";
     }
 
 }

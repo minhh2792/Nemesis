@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 
+import nemesis.Utils;
 import nemesis.commands.SubCommand;
 
 public class BanList implements SubCommand {
@@ -23,11 +24,11 @@ public class BanList implements SubCommand {
             bans.put(ban, ban.getName());
         }
 
-        sender.sendMessage("&aBans (" + bans.size() + "): &f" + bans.values().toString().replace("[", "").replace("]", ""));
+        sender.sendMessage(Utils.colorize("&aBans (" + bans.size() + "): &f" + bans.values().toString().replace("[", "").replace("]", "")));
     }
 
     @Override
     public String getName() {
-        return "BanList";
+        return "banlist";
     }
 }

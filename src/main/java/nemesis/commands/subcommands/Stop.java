@@ -14,6 +14,6 @@ public class Stop implements SubCommand {
 
     @Override
     public String getName() {
-        return "Stop";
+        return "stop";
     }
 }

@@ -31,6 +31,6 @@ public class DeOP implements SubCommand {
 
     @Override
     public String getName() {
-        return "DeOP";
+        return "deop";
     }
 }

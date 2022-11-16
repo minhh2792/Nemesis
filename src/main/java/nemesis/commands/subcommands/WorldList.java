@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 
+import nemesis.Utils;
 import nemesis.commands.SubCommand;
 
 public class WorldList implements SubCommand {
@@ -23,12 +24,12 @@ public class WorldList implements SubCommand {
             worlds.put(world, world.getName());
         }
 
-        sender.sendMessage("&aWorlds (" + worlds.size() + "): &f"
-                + worlds.values().toString().replace("[", "").replace("]", ""));
+        sender.sendMessage(Utils.colorize("&aWorlds (" + worlds.size() + "): &f"
+        + worlds.values().toString().replace("[", "").replace("]", "")));
     }
 
     @Override
     public String getName() {
-        return "WorldList";
+        return "worldlist";
     }
 }

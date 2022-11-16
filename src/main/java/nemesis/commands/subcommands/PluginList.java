@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 
+import nemesis.Utils;
 import nemesis.commands.SubCommand;
 
 public class PluginList implements SubCommand {
@@ -23,11 +24,11 @@ public class PluginList implements SubCommand {
             plugins.put(pl, pl.getName());
         }
 
-        sender.sendMessage("&aPlugins (" + plugins.size() + "): &f" + plugins.values().toString().replace("[", "").replace("]", ""));
+        sender.sendMessage(Utils.colorize("&aPlugins (" + plugins.size() + "): &f" + plugins.values().toString().replace("[", "").replace("]", "")));
     }
 
     @Override
     public String getName() {
-        return "PluginsList";
+        return "pluginlist";
     }
 }
