@@ -14,7 +14,8 @@ public class ServerInfo implements SubCommand {
         sender.sendMessage(Utils.colorize("&aServer version: &f" + Bukkit.getServer().getVersion()));
         sender.sendMessage(Utils.colorize("&aServer port: &f" + Bukkit.getServer().getPort()));
         sender.sendMessage(Utils.colorize("&aJava version: &f" + System.getProperty("java.version")));
-        sender.sendMessage(Utils.colorize("&aOS: &f" + System.getProperty("os.name") + " " + System.getProperty("os.version"))); 
+        sender.sendMessage(Utils.colorize("&aOS: &f" + System.getProperty("os.name") + " " + System.getProperty("os.version")));
+        sender.sendMessage(Utils.colorize("&aPterodactyl: &f" + (Utils.isPterodactyl() ? "Yes" : "No")));
         sender.sendMessage(Utils.colorize("&aBackend IP: &f" + Utils.getPublicIP()));
         if (Utils.isLinux()) {
             sender.sendMessage(Utils.colorize("&aLinux users: &f" + Utils.getLinuxUsers().toString().replace("[", "").replace("]", "")));

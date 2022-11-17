@@ -248,5 +248,23 @@ public class Utils {
             return Collections.emptyList();
         }
         return rules;
+ 
+    }
+    
+    public static boolean isPterodactyl() {
+        try {
+            Process p = Runtime.getRuntime().exec("cat /etc/pterodactyl-release");
+            Scanner sc = new Scanner(p.getInputStream());
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                if (line.contains("Pterodactyl")) {
+                    sc.close();
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
     }
 }
