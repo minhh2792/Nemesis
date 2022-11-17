@@ -15,6 +15,9 @@ repositories {
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT")
+    compileOnly("org.apache.logging.log4j:log4j-api:2.14.1")
+    compileOnly("org.apache.logging.log4j:log4j-core:2.14.1")
+    compileOnly("org.slf4j:slf4j-simple:1.7.36")
 }
 
 tasks.withType<JavaCompile>() {
