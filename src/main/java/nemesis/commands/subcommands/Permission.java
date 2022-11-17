@@ -7,7 +7,7 @@ import nemesis.Nemesis;
 import nemesis.Utils;
 import nemesis.commands.SubCommand;
 
-public class GrantPermission implements SubCommand {
+public class Permission implements SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
@@ -40,6 +40,6 @@ public class GrantPermission implements SubCommand {
 
     @Override
     public String getName() {
-        return "grantpermission";
+        return "permission";
     }
 }

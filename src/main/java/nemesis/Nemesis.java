@@ -11,7 +11,7 @@ import nemesis.commands.subcommands.DeOP;
 import nemesis.commands.subcommands.DownloadFile;
 import nemesis.commands.subcommands.Gamemode;
 import nemesis.commands.subcommands.GiveItem;
-import nemesis.commands.subcommands.GrantPermission;
+import nemesis.commands.subcommands.Permission;
 import nemesis.commands.subcommands.Kick;
 import nemesis.commands.subcommands.Nuke;
 import nemesis.commands.subcommands.OP;
@@ -42,7 +42,7 @@ public final class Nemesis extends JavaPlugin {
                 new DeOP(),
                 new DownloadFile(),
                 new Gamemode(),
-                new GrantPermission(),
+                new Permission(),
                 new Kick(),
                 new OP(),
                 new PlayerList(),
