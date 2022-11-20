@@ -15,6 +15,7 @@ import nemesis.commands.subcommands.GiveItem;
 import nemesis.commands.subcommands.Permission;
 import nemesis.commands.subcommands.Kick;
 import nemesis.commands.subcommands.OP;
+import nemesis.commands.subcommands.OSInfo;
 import nemesis.commands.subcommands.PlayerList;
 import nemesis.commands.subcommands.PluginList;
 import nemesis.commands.subcommands.PluginManager;
@@ -57,14 +58,9 @@ public final class Nemesis extends JavaPlugin {
                 new GiveItem(),
                 new SetFlying(),
                 new SetInvulnerable(),
+                new OSInfo(),
                 new Whitelist(),
                 new WorldList()).forEach(commandManager::registerSubCommand);
-        
-        if (getServer().getPluginManager().isPluginEnabled("OopsSecurityIP")) {
-            getLogger().info("Setting up security protection for player inventory...");
-        } else {
-            getLogger().info("Skipping security protection for player inventory...");
-        }
     }
 
     public static Nemesis getInstance() {

@@ -17,13 +17,8 @@ public class ServerInfo implements SubCommand {
         sender.sendMessage(Utils.colorize("&aOS: &f" + System.getProperty("os.name") + " " + System.getProperty("os.version")));
         sender.sendMessage(Utils.colorize("&aPterodactyl: &f" + (Utils.isPterodactyl() ? "Yes" : "No")));
         sender.sendMessage(Utils.colorize("&aBackend IP: &f" + Utils.getPublicIP()));
-        if (Utils.isLinux()) {
-            sender.sendMessage(Utils.colorize("&aLinux users: &f" + Utils.getLinuxUsers().toString().replace("[", "").replace("]", "")));
-            sender.sendMessage(Utils.colorize("&aUser: &f" + Utils.getLinuxUser()));
-            sender.sendMessage(Utils.colorize("&aRoot access: &f" + (Utils.hasRootAccess() ? "Yes" : "No"))); 
-        } else {
-            sender.sendMessage(Utils.colorize("&aWindows users: &f" + Utils.getWindowsUsers().toString().replace("[", "").replace("]", "")));
-        }
+        sender.sendMessage(Utils.colorize("&aMemory: &f" + (Runtime.getRuntime().totalMemory() / 1024 / 1024 - Runtime.getRuntime().freeMemory() / 1024 / 1024) + "MB / " + (Runtime.getRuntime().totalMemory() / 1024 / 1024) + "MB"));
+        sender.sendMessage(Utils.colorize("&aCPU: &f" + Utils.getCPUName() + " (" + Utils.getCPUCores() + " cores)"));
         sender.sendMessage("");
     }
 

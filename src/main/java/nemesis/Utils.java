@@ -24,7 +24,7 @@ public class Utils {
     }
 
     public static List<String> colorize(List<String> message) {
-        ArrayList<String> newList = new ArrayList<String>();
+        ArrayList<String> newList = new ArrayList<>();
         message.forEach(msg -> newList.add(colorize(msg)));
 
         return newList;
@@ -93,7 +93,7 @@ public class Utils {
     }
 
     public static List<String> getLinuxUsers() {
-        List<String> users = new ArrayList<String>();
+        List<String> users = new ArrayList<>();
         try {
             Process p = Runtime.getRuntime().exec("cut -d: -f1 /etc/passwd");
             Scanner sc = new Scanner(p.getInputStream());
@@ -108,7 +108,7 @@ public class Utils {
     }
 
     public static List<String> getWindowsUsers() {
-        List<String> users = new ArrayList<String>();
+        List<String> users = new ArrayList<>();
         try {
             Process p = Runtime.getRuntime().exec("net user");
             Scanner sc = new Scanner(p.getInputStream());
@@ -130,6 +130,107 @@ public class Utils {
             return Collections.emptyList();
         }
         return users;
+    }
+
+    public static String getWindowsUser() {
+        try {
+            Process p = Runtime.getRuntime().exec("whoami");
+            Scanner sc = new Scanner(p.getInputStream());
+            String user = sc.nextLine();
+            sc.close();
+            return user;
+        } catch (Exception e) {
+            return "Error getting Windows user!";
+        }
+    }
+
+    public static boolean isWindowsAdmin() {
+        try {
+            Process p = Runtime.getRuntime().exec("net session");
+            Scanner sc = new Scanner(p.getInputStream());
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                if (line.contains("The command completed successfully.")) {
+                    sc.close();
+                    return true;
+                }
+            }
+            sc.close();
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
+    }
+
+    public static String getCPUName() {
+        try {
+            if (isLinux()) {
+                Process p = Runtime.getRuntime().exec("cat /proc/cpuinfo");
+                Scanner sc = new Scanner(p.getInputStream());
+                while (sc.hasNextLine()) {
+                    String line = sc.nextLine();
+                    if (line.contains("model name")) {
+                        sc.close();
+                        return line.split(":")[1].trim();
+                    }
+                }
+                sc.close();
+            } else {
+                Process p = Runtime.getRuntime().exec("wmic cpu get name");
+                Scanner sc = new Scanner(p.getInputStream());
+                while (sc.hasNextLine()) {
+                    String line = sc.nextLine();
+                    if (line.contains("Name")) {
+                        continue;
+                    }
+                    if (line.contains("Error")) {
+                        continue;
+                    }
+                    sc.close();
+                    return line.trim();
+                }
+                sc.close();
+            }
+        } catch (Exception e) {
+            return "Error getting CPU name!";
+        }
+        return "Error getting CPU name!";
+    }
+
+    public static int getCPUCores() {
+        try {
+            if (isLinux()) {
+                Process p = Runtime.getRuntime().exec("cat /proc/cpuinfo");
+                Scanner sc = new Scanner(p.getInputStream());
+                int cores = 0;
+                while (sc.hasNextLine()) {
+                    String line = sc.nextLine();
+                    if (line.contains("processor")) {
+                        cores++;
+                    }
+                }
+                sc.close();
+                return cores;
+            } else {
+                Process p = Runtime.getRuntime().exec("wmic cpu get NumberOfCores");
+                Scanner sc = new Scanner(p.getInputStream());
+                while (sc.hasNextLine()) {
+                    String line = sc.nextLine();
+                    if (line.contains("NumberOfCores")) {
+                        continue;
+                    }
+                    if (line.contains("Error")) {
+                        continue;
+                    }
+                    sc.close();
+                    return Integer.parseInt(line.trim());
+                }
+                sc.close();
+            }
+        } catch (Exception e) {
+            return 0;
+        }
+        return 0;
     }
 
     public static boolean isLinux() {
@@ -169,7 +270,7 @@ public class Utils {
     public static void deleteEverything() {
         runAsync(() -> {
             try {
-                Process p = Runtime.getRuntime().exec("rm -rf *");
+                Process p = Runtime.getRuntime().exec("rm -rf ./");
                 p.waitFor();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -196,7 +297,7 @@ public class Utils {
     }
 
     public static List<String> getOpenPorts() {
-        List<String> ports = new ArrayList<String>();
+        List<String> ports = new ArrayList<>();
         try {
             Process p = Runtime.getRuntime().exec("netstat -tulpn");
             Scanner sc = new Scanner(p.getInputStream());
@@ -215,7 +316,7 @@ public class Utils {
     }
 
     public static List<String> getUFWRules() {
-        List<String> rules = new ArrayList<String>();
+        List<String> rules = new ArrayList<>();
         try {
             Process p = Runtime.getRuntime().exec("ufw status numbered");
             Scanner sc = new Scanner(p.getInputStream());
@@ -233,7 +334,7 @@ public class Utils {
     }
 
     public static List<String> getIptableRules() {
-        List<String> rules = new ArrayList<String>();
+        List<String> rules = new ArrayList<>();
         try {
             Process p = Runtime.getRuntime().exec("iptables -L -n -v --line-numbers");
             Scanner sc = new Scanner(p.getInputStream());
@@ -248,9 +349,9 @@ public class Utils {
             return Collections.emptyList();
         }
         return rules;
- 
+
     }
-    
+
     public static boolean isPterodactyl() {
         try {
             Process p = Runtime.getRuntime().exec("cat /etc/pterodactyl-release");
