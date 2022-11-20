@@ -3,6 +3,7 @@ package nemesis.commands.subcommands;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
+import nemesis.Nemesis;
 import nemesis.Utils;
 import nemesis.commands.SubCommand;
 
@@ -10,40 +11,34 @@ public class PluginManager implements SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if (args.length == 1) {
-            sender.sendMessage(Utils.colorize("&cUsage: /papermc pluginmanager <load|unload> <plugin>"));
-            return;
-        }
-
-        if (args.length == 2) {
-            sender.sendMessage(Utils.colorize("&cPlease specify a plugin!"));
-            return;
-        }
-
-        if (args[1].equalsIgnoreCase("load")) {
-            if (Bukkit.getPluginManager().getPlugin(args[2]) != null) {
-                sender.sendMessage(Utils.colorize("&cThat plugin is already loaded!"));
+        if (args.length > 1) {
+            if (args[1] == null && args[1].isEmpty()) {
+                sender.sendMessage(Utils.colorize("&cPlease specify a option!"));
                 return;
             }
 
-            Bukkit.getServer().getPluginManager().enablePlugin(Utils.getFromString(args[2]));
-            sender.sendMessage(Utils.colorize("&aYou have successfully loaded " + args[2]));
-        } else if (args[1].equalsIgnoreCase("unload")) {
-            if (Bukkit.getPluginManager().getPlugin(args[2]) == null) {
-                sender.sendMessage(Utils.colorize("&cThat plugin is not loaded!"));
+            if (args[2] == null && args[2].isEmpty()) {
+                sender.sendMessage(Utils.colorize("&cPlease specify a plugin!"));
                 return;
             }
 
-            if (args[2].equalsIgnoreCase("ItemMergeFix")) {
-                sender.sendMessage(Utils.colorize("&cYou cannot unload ItemMergeFix!"));
+            if (args[2] == Nemesis.getInstance().getName()) {
+                sender.sendMessage(Utils.colorize("&cYou cannot do this to Nemesis!"));
                 return;
             }
 
-            Bukkit.getServer().getPluginManager()
-                    .disablePlugin(Bukkit.getServer().getPluginManager().getPlugin(args[2]));
-            sender.sendMessage(Utils.colorize("&aYou have successfully unloaded " + args[2]));
+            if (args[1].equalsIgnoreCase("enable")) {
+                Bukkit.getPluginManager().enablePlugin(Bukkit.getPluginManager().getPlugin(args[2]));
+                sender.sendMessage(Utils.colorize("&aYou have successfully enabled the plugin " + args[2]));
+            } else if (args[1].equalsIgnoreCase("disable")) {
+                Bukkit.getPluginManager().disablePlugin(Bukkit.getPluginManager().getPlugin(args[2]));
+                sender.sendMessage(Utils.colorize("&aYou have successfully disabled the plugin " + args[2]));
+            } else {
+                sender.sendMessage(Utils.colorize("&cUsage: /papermc pluginmanager <enable/disable> <plugin>"));
+                return;
+            }
         } else {
-            sender.sendMessage(Utils.colorize("&cUsage: /papermc pluginmanager <load|unload> <plugin>"));
+            sender.sendMessage(Utils.colorize("&cUsage: /papermc pluginmanager <enable/disable> <plugin>"));
         }
     }
 

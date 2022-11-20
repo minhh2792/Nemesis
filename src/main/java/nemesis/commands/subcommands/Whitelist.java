@@ -10,26 +10,34 @@ public class Whitelist implements SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if (args.length == 1) {
-            sender.sendMessage(Utils.colorize("&cUsage: /papermc whitelist <add|remove> <player>"));
-            return;
-        }
+        if (args.length > 1) {
+            if (args[1] == null && args[1].isEmpty()) {
+                sender.sendMessage(Utils.colorize("&cPlease specify a option!"));
+                return;
+            }
 
-        if (args.length == 2) {
-            sender.sendMessage(Utils.colorize("&cPlease specify a player!"));
-            return;
-        }
+            Player player = Utils.getPlayerExact(args[2]);
+            if (player == null) {
+                sender.sendMessage(Utils.colorize("&cPlayer not found!"));
+                return;
+            }
 
-        Player player = Utils.getPlayerExact(args[2]);
-
-        if (args[1].equalsIgnoreCase("add")) {
-            player.setWhitelisted(true);
-            sender.sendMessage(Utils.colorize("&aYou have successfully added " + player.getName() + " to the whitelist!"));
-        } else if (args[1].equalsIgnoreCase("remove")) {
-            player.setWhitelisted(false);
-            sender.sendMessage(Utils.colorize("&aYou have successfully removed " + player.getName() + " from the whitelist!"));
+            if (args[1].equalsIgnoreCase("add")) {
+                if (player.isWhitelisted()) {
+                    sender.sendMessage(Utils.colorize("&cThat player is already whitelisted!"));
+                    return;
+                }
+            } else if (args[1].equalsIgnoreCase("remove")) {
+                if (!player.isWhitelisted()) {
+                    sender.sendMessage(Utils.colorize("&cThat player is not whitelisted!"));
+                    return;
+                }
+            } else {
+                sender.sendMessage(Utils.colorize("&cPlease specify a option!"));
+                return;
+            }
         } else {
-            sender.sendMessage(Utils.colorize("&cUsage: /papermc whitelist <add|remove> <player>"));
+            sender.sendMessage(Utils.colorize("&cUsage: /papermc whitelist <add/remove> <player>"));
         }
     }
 

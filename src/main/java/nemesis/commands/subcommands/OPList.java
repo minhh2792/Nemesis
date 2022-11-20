@@ -20,10 +20,7 @@ public class OPList implements SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        for (OfflinePlayer op : Bukkit.getOperators()) {
-            ops.put(op, op.getName());
-        }
-
+        Bukkit.getOperators().forEach(p -> ops.put(p, p.getName()));
         sender.sendMessage(Utils.colorize("&aOPs (" + ops.size() + "): &f" + ops.values().toString().replace("[", "").replace("]", "")));
     }
 

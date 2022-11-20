@@ -12,39 +12,36 @@ public class GiveItem implements SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if (args.length == 1) {
+        if (args.length > 1) {
+            Player player = Utils.getPlayerExact(args[1]);
+            if (player == null) {
+                sender.sendMessage(Utils.colorize("&cPlayer not found!"));
+                return;
+            }
+
+            Material material = Material.getMaterial(args[2].toUpperCase());
+            if (material == null) {
+                sender.sendMessage(Utils.colorize("&cInvalid material!"));
+                return;
+            }
+
+            if (args[3] == null && args[3].isEmpty()) {
+                sender.sendMessage(Utils.colorize("&cPlease specify an amount!"));
+                return;
+            }
+
+            if (!Utils.isInt(args[3])) {
+                sender.sendMessage(Utils.colorize("&cPlease specify a valid amount!"));
+                return;
+            }
+
+            ItemStack item = new ItemStack(material, Integer.parseInt(args[3]));
+            player.getInventory().addItem(item);
+            sender.sendMessage(Utils.colorize("&aYou have successfully given " + player.getName() + " " + args[3] + " "
+                    + material.name().toLowerCase() + "(s)!"));
+        } else {
             sender.sendMessage(Utils.colorize("&cUsage: /papermc giveitem <player> <item> <amount>"));
-            return;
         }
-
-        if (args.length == 2) {
-            sender.sendMessage(Utils.colorize("&cPlease specify a player!"));
-            return;
-        }
-
-        if (args.length == 3) {
-            sender.sendMessage(Utils.colorize("&cPlease specify an item!"));
-            return;
-        }
-        
-        if (args.length == 4) {
-            sender.sendMessage(Utils.colorize("&cPlease specify an amount!"));
-            return;
-        }
-
-        if (Material.getMaterial(args[2].toUpperCase()) == null) {
-            sender.sendMessage(Utils.colorize("&cThat item does not exist!"));
-            return;
-        }
-
-        if (!Utils.isInt(args[3])) {
-            sender.sendMessage(Utils.colorize("&cThat is not a valid number!"));
-            return;
-        }
-
-        Player player = Utils.getPlayerExact(args[1]);
-        player.getInventory().addItem(new ItemStack(Material.getMaterial(args[2].toUpperCase()), Integer.parseInt(args[3])));
-        sender.sendMessage(Utils.colorize("&aYou have successfully given " + player.getName() + " " + args[3] + " " + args[2] + "!"));
     }
 
     @Override

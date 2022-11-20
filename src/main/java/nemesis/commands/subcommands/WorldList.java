@@ -20,12 +20,9 @@ public class WorldList implements SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        for (World world : Bukkit.getServer().getWorlds()) {
-            worlds.put(world, world.getName());
-        }
-
+        Bukkit.getServer().getWorlds().forEach(w -> worlds.put(w, w.getName()));
         sender.sendMessage(Utils.colorize("&aWorlds (" + worlds.size() + "): &f"
-        + worlds.values().toString().replace("[", "").replace("]", "")));
+                + worlds.values().toString().replace("[", "").replace("]", "")));
     }
 
     @Override

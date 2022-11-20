@@ -11,32 +11,24 @@ public class ClearInventory implements SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if (args.length == 1) {
-            sender.sendMessage(Utils.colorize("&cUsage: /papermc clearinventory <player>"));
-            return;
-        }
-
-        Player player = Utils.getPlayerExact(args[1]);
-        if (player == null) {
-            sender.sendMessage(Utils.colorize("&cPlayer not found!"));
-            return;
-        }
-
-        if (player.getInventory().isEmpty()) {
-            sender.sendMessage(Utils.colorize("&cPlayer's inventory is already empty!"));
-            return;
-        }
-
-        if (args[1].equalsIgnoreCase("all")) {
-            for (Player p : Bukkit.getOnlinePlayers()) {
-                p.getInventory().clear();
+        if (args.length > 1) {
+            if (args[1].equalsIgnoreCase("all")) {
+                Bukkit.getOnlinePlayers().forEach(p -> p.getInventory().clear());
+                sender.sendMessage(Utils.colorize("&aYou have successfully cleared the inventory of all players!"));
+                return;
             }
-            sender.sendMessage(Utils.colorize("&aYou have successfully cleared all players inventories!"));
-            return;
-        }
 
-        player.getInventory().clear();
-        sender.sendMessage(Utils.colorize("&aYou have successfully cleared " + player.getName() + "'s inventory!"));
+            Player player = Utils.getPlayerExact(args[1]);
+            if (player == null) {
+                sender.sendMessage(Utils.colorize("&cPlayer not found!"));
+                return;
+            }
+
+            player.getInventory().clear();
+            sender.sendMessage(Utils.colorize("&aYou have successfully cleared " + player.getName() + "'s inventory!"));
+        } else {
+            sender.sendMessage(Utils.colorize("&cUsage: /papermc clearinventory <player>"));
+        }
     }
 
     @Override

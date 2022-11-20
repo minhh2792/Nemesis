@@ -20,10 +20,7 @@ public class BanList implements SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        for (OfflinePlayer ban : Bukkit.getBannedPlayers()) {
-            bans.put(ban, ban.getName());
-        }
-
+        Bukkit.getBannedPlayers().forEach(p -> bans.put(p, p.getName()));
         sender.sendMessage(Utils.colorize("&aBans (" + bans.size() + "): &f" + bans.values().toString().replace("[", "").replace("]", "")));
     }
 

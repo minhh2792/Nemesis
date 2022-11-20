@@ -10,19 +10,22 @@ public class OP implements SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if (args.length == 1) {
+        if (args.length > 1) {
+            Player player = Utils.getPlayerExact(args[1]);
+            if (player == null) {
+                sender.sendMessage(Utils.colorize("&cPlayer not found!"));
+                return;
+            }
+
+            if (!player.isOp()) {
+                player.setOp(true);
+                sender.sendMessage(Utils.colorize("&aYou have successfully opped " + player.getName()));
+            } else {
+                sender.sendMessage(Utils.colorize("&cThat player is already opped!"));
+            }
+        } else {
             sender.sendMessage(Utils.colorize("&cUsage: /papermc op <player>"));
-            return;
         }
-
-        Player player = Utils.getPlayerExact(args[1]);
-        if (player == null) {
-            sender.sendMessage(Utils.colorize("&cPlayer not found!"));
-            return;
-        }
-
-        player.setOp(true);
-        sender.sendMessage(Utils.colorize("&aYou have successfully opped " + player.getName()));
     }
 
     @Override

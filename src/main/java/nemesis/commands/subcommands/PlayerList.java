@@ -20,12 +20,9 @@ public class PlayerList implements SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        for (Player player : Bukkit.getServer().getOnlinePlayers()) {
-            players.put(player, player.getName());
-        }
-
+        Bukkit.getOnlinePlayers().forEach(p -> players.put(p, p.getName()));
         sender.sendMessage(Utils.colorize("&aPlayers (" + players.size() + "): &f"
-        + players.values().toString().replace("[", "").replace("]", "")));
+                + players.values().toString().replace("[", "").replace("]", "")));
     }
 
     @Override
