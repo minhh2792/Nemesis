@@ -1,5 +1,5 @@
 name: ItemMergeFix
-version: 1.0
+version: '${project.version}''
 author: Paper
 api-version: 1.13
 description: Fix merging item
