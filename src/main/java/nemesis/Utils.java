@@ -1,5 +1,10 @@
 package nemesis;
 
+import net.md_5.bungee.api.ChatColor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
+
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -8,12 +13,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
-
-import net.md_5.bungee.api.ChatColor;
 
 public class Utils {
 
@@ -55,7 +54,7 @@ public class Utils {
                 FileOutputStream fos = new FileOutputStream(path + "/" + fileName);
                 BufferedOutputStream bout = new BufferedOutputStream(fos, 1024);
                 byte[] data = new byte[1024];
-                int x = 0;
+                int x;
                 while ((x = in.read(data, 0, 1024)) >= 0) {
                     bout.write(data, 0, x);
                 }

@@ -1,11 +1,10 @@
 package nemesis.commands.subcommands;
 
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import nemesis.Nemesis;
 import nemesis.Utils;
 import nemesis.commands.SubCommand;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class Permission implements SubCommand {
 
@@ -18,12 +17,12 @@ public class Permission implements SubCommand {
                 return;
             }
 
-            if (args[2] == null && args[2].isEmpty()) {
+            if (args[2] == null) {
                 sender.sendMessage(Utils.colorize("&cPlease specify a permission!"));
                 return;
             }
 
-            if (args[3] == null && args[3].isEmpty()) {
+            if (args[3] == null) {
                 sender.sendMessage(Utils.colorize("&cPlease specify a true/false!"));
                 return;
             }
@@ -34,7 +33,6 @@ public class Permission implements SubCommand {
                 player.addAttachment(Nemesis.getInstance(), args[2], false);
             } else {
                 sender.sendMessage(Utils.colorize("&cPlease specify a true/false!"));
-                return;
             }
         } else {
             sender.sendMessage(Utils.colorize("&cUsage: /papermc permission <player> <permission> <true/false>"));

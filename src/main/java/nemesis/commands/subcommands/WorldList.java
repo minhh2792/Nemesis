@@ -1,14 +1,13 @@
 package nemesis.commands.subcommands;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import nemesis.Utils;
+import nemesis.commands.SubCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 
-import nemesis.Utils;
-import nemesis.commands.SubCommand;
+import java.util.HashMap;
+import java.util.Map;
 
 public class WorldList implements SubCommand {
 

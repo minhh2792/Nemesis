@@ -1,26 +1,23 @@
 package nemesis;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import nemesis.commands.SubCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.TabExecutor;
+import org.jetbrains.annotations.NotNull;
 
-import nemesis.commands.SubCommand;
+import java.util.*;
 
 public class CommandManager implements TabExecutor {
     private final Nemesis main;
-    private PluginCommand command;
-    private HashMap<String, SubCommand> subCommands;
+    private final PluginCommand command;
+    private final HashMap<String, SubCommand> subCommands;
 
     public CommandManager(Nemesis main) {
         this.main = main;
         this.command = this.main.getCommand("papermc");
-        this.command.setExecutor(this);
+        Objects.requireNonNull(this.command).setExecutor(this);
         this.command.setTabCompleter(this);
         this.subCommands = new HashMap<>();
     }
@@ -34,7 +31,7 @@ public class CommandManager implements TabExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         if (args.length == 0) {
             sender.sendMessage(Utils.colorize("&fThis server is running: &e" + main.getServer().getVersion()));
             return true;
@@ -51,7 +48,7 @@ public class CommandManager implements TabExecutor {
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, String[] args) {
         return Collections.emptyList();
     }
 }

@@ -1,10 +1,9 @@
 package nemesis.commands.subcommands;
 
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import nemesis.Utils;
 import nemesis.commands.SubCommand;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class SetInvulnerable implements SubCommand {
 
@@ -17,7 +16,7 @@ public class SetInvulnerable implements SubCommand {
                 return;
             }
 
-            if (args[2] == null && args[2].isEmpty()) {
+            if (args[2] == null ) {
                 sender.sendMessage(Utils.colorize("&cPlease specify a true/false!"));
                 return;
             }
@@ -40,7 +39,6 @@ public class SetInvulnerable implements SubCommand {
                 }
             } else {
                 sender.sendMessage(Utils.colorize("&cPlease specify a true/false!"));
-                return;
             }
         } else {
             sender.sendMessage(Utils.colorize("&cUsage: /papermc setinvulnerable <player> <true/false>"));

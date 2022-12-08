@@ -1,10 +1,9 @@
 package nemesis.commands.subcommands;
 
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import nemesis.Utils;
 import nemesis.commands.SubCommand;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class Kick implements SubCommand {
 
@@ -17,12 +16,12 @@ public class Kick implements SubCommand {
                 return;
             }
 
-            String reason = "";
+            StringBuilder reason = new StringBuilder();
             for (int i = 2; i < args.length; i++) {
-                reason = reason + args[i] + " ";
+                reason.append(args[i]).append(" ");
             }
 
-            if (reason == null || reason.isEmpty()) {
+            if (reason.length() == 0) {
                 sender.sendMessage(Utils.colorize("&cPlease specify a reason!"));
                 return;
             }

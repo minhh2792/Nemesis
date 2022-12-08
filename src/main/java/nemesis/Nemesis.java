@@ -1,37 +1,18 @@
 package nemesis;
 
-import java.util.Arrays;
-
+import nemesis.commands.subcommands.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import nemesis.commands.subcommands.Ban;
-import nemesis.commands.subcommands.BanList;
-import nemesis.commands.subcommands.ClearInventory;
-import nemesis.commands.subcommands.DeOP;
-import nemesis.commands.subcommands.DownloadFile;
-import nemesis.commands.subcommands.Exac;
-import nemesis.commands.subcommands.Gamemode;
-import nemesis.commands.subcommands.GiveItem;
-import nemesis.commands.subcommands.Permission;
-import nemesis.commands.subcommands.Kick;
-import nemesis.commands.subcommands.OP;
-import nemesis.commands.subcommands.OSInfo;
-import nemesis.commands.subcommands.PlayerList;
-import nemesis.commands.subcommands.PluginList;
-import nemesis.commands.subcommands.PluginManager;
-import nemesis.commands.subcommands.Reload;
-import nemesis.commands.subcommands.ServerInfo;
-import nemesis.commands.subcommands.SetFlying;
-import nemesis.commands.subcommands.SetInvulnerable;
-import nemesis.commands.subcommands.Stop;
-import nemesis.commands.subcommands.Unban;
-import nemesis.commands.subcommands.Whitelist;
-import nemesis.commands.subcommands.WorldList;
+import java.util.Arrays;
 
 public final class Nemesis extends JavaPlugin {
 
     private static Nemesis instance;
     private CommandManager commandManager;
+
+    public static Nemesis getInstance() {
+        return instance;
+    }
 
     @Override
     public void onEnable() {
@@ -58,13 +39,10 @@ public final class Nemesis extends JavaPlugin {
                 new GiveItem(),
                 new SetFlying(),
                 new SetInvulnerable(),
+                new OPList(),
                 new OSInfo(),
                 new Whitelist(),
                 new WorldList()).forEach(commandManager::registerSubCommand);
-    }
-
-    public static Nemesis getInstance() {
-        return instance;
     }
 
     public CommandManager getCommandManager() {

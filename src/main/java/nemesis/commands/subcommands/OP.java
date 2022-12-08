@@ -1,10 +1,9 @@
 package nemesis.commands.subcommands;
 
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import nemesis.Utils;
 import nemesis.commands.SubCommand;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class OP implements SubCommand {
 

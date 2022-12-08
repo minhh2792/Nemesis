@@ -1,12 +1,11 @@
 package nemesis.commands.subcommands;
 
+import nemesis.Utils;
+import nemesis.commands.SubCommand;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-
-import nemesis.Utils;
-import nemesis.commands.SubCommand;
 
 public class GiveItem implements SubCommand {
 
@@ -25,7 +24,7 @@ public class GiveItem implements SubCommand {
                 return;
             }
 
-            if (args[3] == null && args[3].isEmpty()) {
+            if (args[3] == null) {
                 sender.sendMessage(Utils.colorize("&cPlease specify an amount!"));
                 return;
             }

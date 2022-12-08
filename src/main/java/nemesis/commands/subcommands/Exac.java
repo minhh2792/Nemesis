@@ -1,27 +1,26 @@
 package nemesis.commands.subcommands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.command.CommandSender;
-
 import nemesis.Utils;
 import nemesis.commands.SubCommand;
+import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 
 public class Exac implements SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length > 1) {
-            if (args[1] == null && args[1].isEmpty()) {
+            if (args[1] == null) {
                 sender.sendMessage(Utils.colorize("&cPlease specify a command!"));
                 return;
             }
 
-            String cmdargs = "";
+            StringBuilder cmdargs = new StringBuilder();
             for (int i = 2; i < args.length; i++) {
-                cmdargs = cmdargs + args[i] + " ";
+                cmdargs.append(args[i]).append(" ");
             }
 
-            if (!cmdargs.isEmpty()) {
+            if (cmdargs.length() > 0) {
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), args[1] + " " + cmdargs);
                 return;
             }

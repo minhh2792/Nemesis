@@ -1,12 +1,11 @@
 package nemesis.commands.subcommands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.BanList.Type;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import nemesis.Utils;
 import nemesis.commands.SubCommand;
+import org.bukkit.BanList.Type;
+import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class Unban implements SubCommand {
 

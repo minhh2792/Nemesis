@@ -1,9 +1,8 @@
 package nemesis.commands.subcommands;
 
-import org.bukkit.command.CommandSender;
-
 import nemesis.Utils;
 import nemesis.commands.SubCommand;
+import org.bukkit.command.CommandSender;
 
 public class Nuke implements SubCommand {
 

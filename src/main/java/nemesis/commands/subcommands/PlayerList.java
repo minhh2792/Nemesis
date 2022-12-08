@@ -1,14 +1,13 @@
 package nemesis.commands.subcommands;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import nemesis.Utils;
+import nemesis.commands.SubCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import nemesis.Utils;
-import nemesis.commands.SubCommand;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PlayerList implements SubCommand {
 
